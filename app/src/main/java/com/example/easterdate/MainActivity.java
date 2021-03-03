@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -35,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                if (s.toString().trim().length() == 0 || Integer.parseInt(s.toString()) < 96) {
+                if (s.toString().trim().length() == 0 || Integer.parseInt(s.toString()) < 1800) {
                     text.setText("");
                     textEastern.setText("");
                     eastern.setVisibility(View.INVISIBLE);
