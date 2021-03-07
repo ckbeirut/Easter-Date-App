@@ -57,12 +57,11 @@ public class MainActivity extends AppCompatActivity {
 
                 int mon, day;
 
-                int A = AN % 19;
                 int b = AN % 7;
                 int ce = AN % 4;
-                int d = (19 * A + 16) % 30;
+                int d = (19 * G + 16) % 30;
                 int e = (2 * ce + 4 * b + 6 * d) % 7;
-                int f = (19 * A + 16) % 30;
+                int f = (19 * G + 16) % 30;
                 int key = f + e + 3;
                 if (key > 30)
                     mon = 5;
