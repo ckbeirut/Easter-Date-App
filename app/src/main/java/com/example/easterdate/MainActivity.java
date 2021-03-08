@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -19,11 +20,16 @@ public class MainActivity extends AppCompatActivity {
         EditText Edit = findViewById(R.id.editTextDate);
         final TextView text = findViewById(R.id.textViewWestern);
         final TextView textEastern = findViewById(R.id.textViewEastern);
+        final TextView all = findViewById(R.id.textViewAll);
+        final TextView both = findViewById(R.id.textViewBoth);
         final EditText eastern = findViewById(R.id.eastern);
         final EditText western = findViewById(R.id.western);
 
+
         eastern.setVisibility(View.INVISIBLE);
         western.setVisibility(View.INVISIBLE);
+        both.setVisibility(View.INVISIBLE);
+        //all.setGravity(Gravity.CENTER_HORIZONTAL);
 
         Edit.addTextChangedListener(new TextWatcher() {
             @Override
@@ -37,8 +43,10 @@ public class MainActivity extends AppCompatActivity {
                 if (s.toString().trim().length() == 0 || Integer.parseInt(s.toString()) < 1800) {
                     text.setText("");
                     textEastern.setText("");
+                    all.setText("");
                     eastern.setVisibility(View.INVISIBLE);
                     western.setVisibility(View.INVISIBLE);
+                    both.setVisibility(View.INVISIBLE);
                     return;
                 }
 
@@ -72,11 +80,16 @@ public class MainActivity extends AppCompatActivity {
                 else day = key;
 
                 String[] month = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
-
-                eastern.setVisibility(View.VISIBLE);
-                western.setVisibility(View.VISIBLE);
-                text.setText("Sunday " + JP + " " + month[MP - 1]);
-                textEastern.setText("Sunday " + day + " " + month[mon - 1]);
+                if (JP == day && MP == mon) {
+                    all.setText("Sunday " + JP + " " + month[MP - 1]);
+                    both.setVisibility(View.VISIBLE);
+                }
+                else {
+                    eastern.setVisibility(View.VISIBLE);
+                    western.setVisibility(View.VISIBLE);
+                    text.setText("Sunday " + JP + " " + month[MP - 1]);
+                    textEastern.setText("Sunday " + day + " " + month[mon - 1]);
+                }
 
             }
 
