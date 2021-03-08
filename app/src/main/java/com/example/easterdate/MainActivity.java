@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -29,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
         eastern.setVisibility(View.INVISIBLE);
         western.setVisibility(View.INVISIBLE);
         both.setVisibility(View.INVISIBLE);
-        //all.setGravity(Gravity.CENTER_HORIZONTAL);
 
         Edit.addTextChangedListener(new TextWatcher() {
             @Override
