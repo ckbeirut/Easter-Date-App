@@ -8,6 +8,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         final TextView both = findViewById(R.id.textViewBoth);
         final EditText eastern = findViewById(R.id.eastern);
         final EditText western = findViewById(R.id.western);
-
+        final Toast toast = Toast.makeText(getApplicationContext()," Dates between 1800 and 2100",1);
 
         eastern.setVisibility(View.INVISIBLE);
         western.setVisibility(View.INVISIBLE);
@@ -38,18 +39,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                if (s.toString().trim().length() == 0 || Integer.parseInt(s.toString()) < 1800) {
+                if (s.toString().trim().length() < 4 || Integer.parseInt(s.toString()) < 1800 || Integer.parseInt(s.toString()) > 2100 ) {
                     text.setText("");
                     textEastern.setText("");
                     all.setText("");
                     eastern.setVisibility(View.INVISIBLE);
                     western.setVisibility(View.INVISIBLE);
                     both.setVisibility(View.INVISIBLE);
+                    toast.show();
                     return;
                 }
 
                 EditText Edit = findViewById(R.id.editTextDate);
                 int AN = Integer.parseInt(Edit.getText().toString());
+                toast.cancel();
 
                 int G = AN % 19;
                 int C = AN / 100;
@@ -93,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-
 
             }
         });
